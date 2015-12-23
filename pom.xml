@@ -36,9 +36,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/drejc/aerolush</url>
-        <connection>scm:git:git://github.com/drejc/aerolush.git</connection>
-        <developerConnection>scm:git:git@github.com/drejc/aerolush.git</developerConnection>
+        <url>https://github.com/Spikeify/aerolush</url>
+        <connection>scm:git:git://github.com/Spikeify/aerolush.git</connection>
+        <developerConnection>scm:git:git@github.com/Spikeify/aerolush.git</developerConnection>
     </scm>
 
     <developers>
@@ -46,6 +46,11 @@
             <name>Andrej Završnik</name>
             <email>andrej@zavrsnik.si</email>
             <id>drejc</id>
+        </developer>
+        <developer>
+            <name>Dean Gostiša</name>
+            <email>dean@black.si</email>
+            <id>dincek</id>
         </developer>
     </developers>
 
