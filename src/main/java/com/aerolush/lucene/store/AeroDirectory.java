@@ -42,6 +42,7 @@ public class AeroDirectory extends Directory {
 		File found = sfy.get(File.class).key(name).now();
 		if (found != null) {
 			sfy.delete(found).now();
+			return;
 		}
 
 		throw new FileNotFoundException(name);
@@ -84,6 +85,11 @@ public class AeroDirectory extends Directory {
 	public IndexInput openInput(String name, IOContext ioContext) throws IOException {
 
 		return new AeroIndexInput(sfy, name);
+	}
+
+	@Override
+	public Lock obtainLock(String name) throws IOException {
+		return lockFactory.obtainLock(this, name);
 	}
 
 	/**
@@ -131,19 +137,6 @@ public class AeroDirectory extends Directory {
 		}
 
 		throw new FileNotFoundException(oldName);
-	}
-
-	/**
-	 * Lock's file fo operation
-	 * TODO: Consider storing this info direclty into file entity? ...
-	 *
-	 * @param name
-	 * @return
-	 */
-	@Override
-	public Lock makeLock(String name) {
-
-		return lockFactory.makeLock(this, name);
 	}
 
 	/**

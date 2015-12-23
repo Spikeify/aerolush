@@ -14,6 +14,8 @@ public class FileLock {
 	@UserKey
 	public String name;	// file name ...
 
+	public String lockHash;
+
 	public long lockTime;
 
 	// todo ... add expiration period

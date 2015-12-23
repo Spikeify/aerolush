@@ -16,11 +16,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.aerospike>3.1.4</version.aerospike>
-        <version.spikeify>0.2.7</version.spikeify>
-        <version.jackson>[2.6,2.7)</version.jackson>
+        <version.aerospike>3.1.8</version.aerospike>
+        <version.spikeify>0.2.17</version.spikeify>
+        <version.jackson>2.7.0-rc2</version.jackson>
 
-        <version.lucene>5.2.1</version.lucene>
+        <version.lucene>5.4.0</version.lucene>
 
         <version.junit>4.12</version.junit>
         <version.mockito-all>1.10.8</version.mockito-all>
@@ -53,13 +53,13 @@
         <dependency>
             <groupId>com.aerospike</groupId>
             <artifactId>aerospike-client</artifactId>
-            <version>3.1.5</version>
+            <version>${version.aerospike}</version>
         </dependency>
 
         <dependency>
             <groupId>com.spikeify</groupId>
             <artifactId>core</artifactId>
-            <version>0.2.7</version>
+            <version>${version.spikeify}</version>
         </dependency>
 
         <!-- Lucene -->
@@ -220,6 +220,30 @@
                     </execution>
                 </executions>
             </plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.aerolush.TermsIndexTest</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>standalone</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
