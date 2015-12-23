@@ -69,6 +69,7 @@ public class UpdatingIndexTest {
 	private static void addDoc(IndexWriter w, Media media) throws IOException {
 		Document doc = new Document();
 		doc.add(new StringField("_id", media.id, Field.Store.YES));
+		doc.add(new StringField("_type", Media.class.getSimpleName(), Field.Store.YES));
 		doc.add(new StringField("channelId", media.channelId, Field.Store.YES));
 		for (String gameId : media.gameIds) {
 			doc.add(new StringField("gameIds", gameId, Field.Store.YES));
@@ -150,6 +151,7 @@ public class UpdatingIndexTest {
 	private int find(String gameId, String channelId) throws IOException {
 		System.out.println("Game ID: " + gameId + ", Channel ID: " + channelId);
 		BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
+		booleanQueryBuilder = booleanQueryBuilder.add(new PhraseQuery.Builder().add(new Term("_type", Media.class.getSimpleName())).build(), BooleanClause.Occur.MUST);
 		if (gameId != null) {
 			PhraseQuery.Builder builder = new PhraseQuery.Builder();
 			builder = builder.add(new Term("gameIds", gameId));
